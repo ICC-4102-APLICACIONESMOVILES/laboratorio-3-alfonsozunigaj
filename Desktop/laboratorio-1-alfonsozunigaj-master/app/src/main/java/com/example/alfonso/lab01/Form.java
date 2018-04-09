@@ -29,6 +29,10 @@ public class Form {
     private String description;
 
     public Form() {
+        name = "";
+        date = "";
+        category = "";
+        description = "";
     }
 
     public String getId() { return id; }
