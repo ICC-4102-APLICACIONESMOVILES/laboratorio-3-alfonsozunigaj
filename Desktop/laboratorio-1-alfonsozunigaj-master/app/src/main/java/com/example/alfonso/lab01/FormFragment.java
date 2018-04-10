@@ -55,16 +55,10 @@ public class FormFragment extends Fragment {
         EditText editTextDescription = (EditText) view.getRootView().findViewById(R.id.editTextComentary);
         final String description = editTextDescription.getText().toString();
 
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
-
-        final String id = name + "-" + ts;
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Form form = new Form();
-                form.setId(id);
                 form.setName(name);
                 form.setDate(date);
                 form.setCategory(category);

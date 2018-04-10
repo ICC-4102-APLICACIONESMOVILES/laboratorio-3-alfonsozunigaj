@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -58,12 +59,6 @@ public class MainActivity extends AppCompatActivity {
                             fragment.setUpInfo(EMAIL, PASSWORD, sharedPref);
                             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                                     fragment).commit();
-                        }
-
-                        else if(menuItem.getItemId() == R.id.nav_log_out) {
-                            sharedPref.edit().clear().commit();
-                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivityForResult(intent, LOG_IN_REQUEST);
                         }
 
                         else if(menuItem.getItemId() == R.id.nav_form) {
@@ -128,10 +123,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.drawer_view, menu);
+        return true;
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.log_out_button:
+                sharedPref.edit().clear().commit();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivityForResult(intent, LOG_IN_REQUEST);
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -13,8 +13,8 @@ import java.sql.Date;
 @Entity
 public class Form {
     @NonNull
-    @PrimaryKey
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -35,8 +35,8 @@ public class Form {
         description = "";
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public String getName() { return name; }
     public void setName (String name) { this.name = name; }
     public String getDate() { return date; }
